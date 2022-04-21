@@ -5,7 +5,12 @@ use PHPUnit\Framework\TestCase;
 require_once('./src/TempTracker.php');
 
 class TempTrackerTest extends TestCase {
-    public function test_something() {
-        $this->assertEquals(42, 42);
+
+    // Test insert method with wrong type as arg
+    public function test_insert_wrong_typing(){
+        $tempTracker = new TempTracker;       
+        $result = $tempTracker->insert('text');
+        $this->expectException(\TypeError::class);
     }
+
 }

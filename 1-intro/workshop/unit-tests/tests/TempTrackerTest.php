@@ -38,5 +38,7 @@ class TempTrackerTest extends TestCase {
         $tempTracker = new TempTracker;
         $this->assertIsInt($tempTracker->insert(70));
         $this->assertIsInt($tempTracker->insert("fezzeezzz"));
+
     }
+
 }

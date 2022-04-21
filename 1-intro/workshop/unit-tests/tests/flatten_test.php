@@ -24,4 +24,10 @@ class FlattenTest extends TestCase
     {
         $this->assertEquals(flatten([4, [5, [6, 7]], [1, 2, 3]]), [4, 5, 6, 7, 1, 2, 3], "Should be [4, 5, 6, 7, 1, 2, 3]");
     }
+
+    // Tests with a single value in list
+    public function test_single_value(){
+        $this->assertEquals(flatten([5]), [5], "Should be [5]");
+        $this->assertEquals(flatten([-5]), [-5], "Should be [-5]");
+     }   
 }

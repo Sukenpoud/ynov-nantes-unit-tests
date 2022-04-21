@@ -32,4 +32,11 @@ class TempTrackerTest extends TestCase {
         $tempTracker->insert(50);
         $this->assertEquals($tempTracker->get_max(), 55.0);
     }
+
+    // Test insert method with wrong type as arg
+    public function test_insert_wrong_typing(){
+        $tempTracker = new TempTracker;
+        $this->assertIsInt($tempTracker->insert(70));
+        $this->assertIsInt($tempTracker->insert("fezzeezzz"));
+    }
 }

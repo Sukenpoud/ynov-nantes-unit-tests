@@ -12,6 +12,7 @@ class Shop {
   }
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
+      // Les items perdent 1 de 'quality'
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
@@ -35,9 +36,11 @@ class Shop {
           }
         }
       }
+      // Diminution d'un jour
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
+      // Si date de péremption dépassée
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
           if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {

@@ -1,36 +1,32 @@
-
 const { expect } = require('@jest/globals');
-
-const Item = require('./Item');
-const db = require('../setup/db');
+const Item = require('./Item.js');
 const mongoose = require('mongoose');
 
+describe("Test Item model", () => {
 
-const itemData = {
-  name: "testitem",
-  date: "2022-04-21",
-};
+  beforeAll(async () => {
+    await mongoose.connect('mongodb://mongo:27017/docker-node-mongo-test', { useNewUrlParser: true });
+    return Item.deleteMany({});
+  });
+  
+  afterEach(() => {
+    return Item.deleteMany({});
+  });
+  
+  afterAll(() => {
+    return mongoose.connection.close({});
+  });
 
-beforeAll(async () => {
-  await db.setUp();
-});
-
-afterEach(async () => {
-  await db.dropCollections();
-});
-
-afterAll(async () => {
-  await db.dropDatabase();
-});
-
-describe("Item model", () => {
   it("create & save item successfully", async () => {
-    const validItem = new Item(itemData);
+    const validItem = new Item({name: 'patoche'});
+
     const savedItem = await validItem.save();
-    // Object Name should be defined when successfully saved to MongoDB.
+
+    const findItem = await Item.findOne({name: 'patoche'});
+
     expect(savedItem.name).toBeDefined();
-    expect(savedItem.name).toBe(itemData.name);
-    expect(savedItem.date).toBe(itemData.date);
+
+    expect(savedItem.name).toBe(validItem.name);
   });
 
 });

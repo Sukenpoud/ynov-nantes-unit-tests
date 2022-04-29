@@ -8,31 +8,39 @@ window.onload = function() {
     const doneBody = document.getElementById('done-body');
     body.forEach((todo, index) => {
       if (todo.done) {
-        // add to done
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${todo.text}</td>`;
-        doneBody.appendChild(row);
+        addToDone();
       } else {
-        // add to todo table
-        const row = document.createElement('tr');
-        row.id = `todo-${index}`;
-        row.innerHTML = `
-          <td scope="row" class="text-left">${todo.text}</td>
-          <td>
-            <button
-              class="btn btn-outline-success btn-sm"
-              id=${todo._id}
-              cy-data=${'todo-' + index}
-              onClick="doneTODO(event)"
-            >
-              Done
-            </button>
-          </td>`
-
-        todoBody.appendChild(row);
+        addToDo();
       }
     })
   })
+}
+
+// add to done
+function addToDone(){
+  const row = document.createElement('tr');
+  row.innerHTML = `<td>${todo.text}</td>`;
+  doneBody.appendChild(row);
+}
+
+// add to todo table
+function addToDo(){
+  const row = document.createElement('tr');
+  row.id = `todo-${index}`;
+  row.innerHTML = `
+    <td scope="row" class="text-left">${todo.text}</td>
+    <td>
+      <button
+        class="btn btn-outline-success btn-sm"
+        id=${todo._id}
+        cy-data=${'todo-' + index}
+        onClick="doneTODO(event)"
+      >
+        Done
+      </button>
+    </td>`
+
+  todoBody.appendChild(row);
 }
 
 function createTODO() {
